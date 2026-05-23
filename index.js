@@ -82,7 +82,10 @@ class Player{
         this.type = type
         this.board = board
     }
-
+  
+     creategrid(){
+        this.board = new Gameboard
+     }
 }
 export { Ship, Gameboard }
    
