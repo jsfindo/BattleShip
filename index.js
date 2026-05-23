@@ -1,6 +1,6 @@
 let gridsize =10
 
-class ship{
+class Ship{
     constructor(shiplength, hitcount =0, sunk = false, position = []){
         this.shiplength = shiplength
         this.hitcount = hitcount
@@ -13,21 +13,22 @@ class ship{
         this.hitcount++
     }
 
-    isSunk(){
-        if(this.hitcount === this.shiplength){
-            this.sunk = true
-        }
-    }
+    
+       isSunk() {
+            return this.hitcount === this.shiplength}
+
+    
 }
 
 class Gameboard{
     constructor(grid = [], ships = [], missedAttacks = []){
         this.grid = grid
         this.ships = ships
+        this.missedAttacks = missedAttacks
 
     }
 addShip(startLocation, length, orientation) {
-        const vessel = new ship(length)
+        const vessel = new Ship(length, hitcount =0, sunk = false, position = [])
 
         if (orientation == 1) {
             for (let i = 0; i < length; i++) {
@@ -66,15 +67,22 @@ addShip(startLocation, length, orientation) {
         this.missedAttacks.push(position)
         return "miss"
     }
-
-    gameEndCheck(){
-        if(this.ships.every(vessel => vessel.sunk === true)){
-            return "game over"
-        }
+gameEndCheck() {
+    if (this.ships.every(vessel => vessel.isSunk())) {
+        return "game over"
     }
 
 
 
-}
+}}
 
+
+class Player{
+    constructor(type, board = []){
+        this.type = type
+        this.board = board
+    }
+
+}
+export { Ship, Gameboard }
    
