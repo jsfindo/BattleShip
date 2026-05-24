@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3rem;
+      padding: 2rem;
+      flex-wrap: wrap;
+    }
+ 
+    .grid-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+ 
+    .grid-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+ 
+    .label-enemy { background: #FCEBEB; color: #A32D2D; }
+    .label-home  { background: #E6F1FB; color: #185FA5; }
+ 
+    .col-labels {
+      display: grid;
+      grid-template-columns: 24px repeat(10, 36px);
+      gap: 2px;
+    }
+ 
+    .col-label {
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+      line-height: 24px;
+    }
+ 
+    .grid-row-wrapper {
+      display: flex;
+      gap: 2px;
+    }
+ 
+    .row-labels {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+ 
+    .row-label {
+      font-size: 11px;
+      color: #888;
+      width: 24px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+    }
+ 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(10, 36px);
+      gap: 2px;
+    }
+ 
+    .grid div {
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+ 
+    .grid.enemy div:hover { background: #FCEBEB; }
+    .grid.home  div:hover { background: #E6F1FB; }
+  </style>
+</head>
+<body>
+ <div id="ui">
+  <div id="instructions">Place your ships — click a square to place. Press Tab to rotate.</div>
+  <div id="orientation-display">Orientation: ➡ Horizontal</div>
+  <div id="status"></div>
+</div>
+  <!-- ENEMY GRID -->
+  <div class="grid-section">
+    <span class="grid-label label-enemy">&#9654; Enemy waters</span>
+    <div class="col-labels">
+      <div></div>
+      <div class="col-label">A</div>
+      <div class="col-label">B</div>
+      <div class="col-label">C</div>
+      <div class="col-label">D</div>
+      <div class="col-label">E</div>
+      <div class="col-label">F</div>
+      <div class="col-label">G</div>
+      <div class="col-label">H</div>
+      <div class="col-label">I</div>
+      <div class="col-label">J</div>
+    </div>
+    <div class="grid-row-wrapper">
+      <div class="row-labels">
+        <div class="row-label">1</div>
+        <div class="row-label">2</div>
+        <div class="row-label">3</div>
+        <div class="row-label">4</div>
+        <div class="row-label">5</div>
+        <div class="row-label">6</div>
+        <div class="row-label">7</div>
+        <div class="row-label">8</div>
+        <div class="row-label">9</div>
+        <div class="row-label">10</div>
+      </div>
+      <div class="grid enemy" id="enemy-grid">
+        <div id="enemy-A1"></div><div id="enemy-B1"></div><div id="enemy-C1"></div><div id="enemy-D1"></div><div id="enemy-E1"></div><div id="enemy-F1"></div><div id="enemy-G1"></div><div id="enemy-H1"></div><div id="enemy-I1"></div><div id="enemy-J1"></div>
+        <div id="enemy-A2"></div><div id="enemy-B2"></div><div id="enemy-C2"></div><div id="enemy-D2"></div><div id="enemy-E2"></div><div id="enemy-F2"></div><div id="enemy-G2"></div><div id="enemy-H2"></div><div id="enemy-I2"></div><div id="enemy-J2"></div>
+        <div id="enemy-A3"></div><div id="enemy-B3"></div><div id="enemy-C3"></div><div id="enemy-D3"></div><div id="enemy-E3"></div><div id="enemy-F3"></div><div id="enemy-G3"></div><div id="enemy-H3"></div><div id="enemy-I3"></div><div id="enemy-J3"></div>
+        <div id="enemy-A4"></div><div id="enemy-B4"></div><div id="enemy-C4"></div><div id="enemy-D4"></div><div id="enemy-E4"></div><div id="enemy-F4"></div><div id="enemy-G4"></div><div id="enemy-H4"></div><div id="enemy-I4"></div><div id="enemy-J4"></div>
+        <div id="enemy-A5"></div><div id="enemy-B5"></div><div id="enemy-C5"></div><div id="enemy-D5"></div><div id="enemy-E5"></div><div id="enemy-F5"></div><div id="enemy-G5"></div><div id="enemy-H5"></div><div id="enemy-I5"></div><div id="enemy-J5"></div>
+        <div id="enemy-A6"></div><div id="enemy-B6"></div><div id="enemy-C6"></div><div id="enemy-D6"></div><div id="enemy-E6"></div><div id="enemy-F6"></div><div id="enemy-G6"></div><div id="enemy-H6"></div><div id="enemy-I6"></div><div id="enemy-J6"></div>
+        <div id="enemy-A7"></div><div id="enemy-B7"></div><div id="enemy-C7"></div><div id="enemy-D7"></div><div id="enemy-E7"></div><div id="enemy-F7"></div><div id="enemy-G7"></div><div id="enemy-H7"></div><div id="enemy-I7"></div><div id="enemy-J7"></div>
+        <div id="enemy-A8"></div><div id="enemy-B8"></div><div id="enemy-C8"></div><div id="enemy-D8"></div><div id="enemy-E8"></div><div id="enemy-F8"></div><div id="enemy-G8"></div><div id="enemy-H8"></div><div id="enemy-I8"></div><div id="enemy-J8"></div>
+        <div id="enemy-A9"></div><div id="enemy-B9"></div><div id="enemy-C9"></div><div id="enemy-D9"></div><div id="enemy-E9"></div><div id="enemy-F9"></div><div id="enemy-G9"></div><div id="enemy-H9"></div><div id="enemy-I9"></div><div id="enemy-J9"></div>
+        <div id="enemy-A10"></div><div id="enemy-B10"></div><div id="enemy-C10"></div><div id="enemy-D10"></div><div id="enemy-E10"></div><div id="enemy-F10"></div><div id="enemy-G10"></div><div id="enemy-H10"></div><div id="enemy-I10"></div><div id="enemy-J10"></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- HOME GRID -->
+  <div class="grid-section">
+    <span class="grid-label label-home">&#9632; Home waters</span>
+    <div class="col-labels">
+      <div></div>
+      <div class="col-label">A</div>
+      <div class="col-label">B</div>
+      <div class="col-label">C</div>
+      <div class="col-label">D</div>
+      <div class="col-label">E</div>
+      <div class="col-label">F</div>
+      <div class="col-label">G</div>
+      <div class="col-label">H</div>
+      <div class="col-label">I</div>
+      <div class="col-label">J</div>
+    </div>
+    <div class="grid-row-wrapper">
+      <div class="row-labels">
+        <div class="row-label">1</div>
+        <div class="row-label">2</div>
+        <div class="row-label">3</div>
+        <div class="row-label">4</div>
+        <div class="row-label">5</div>
+        <div class="row-label">6</div>
+        <div class="row-label">7</div>
+        <div class="row-label">8</div>
+        <div class="row-label">9</div>
+        <div class="row-label">10</div>
+      </div>
+      <div class="grid home" id="home-grid">
+        <div id="home-A1"></div><div id="home-B1"></div><div id="home-C1"></div><div id="home-D1"></div><div id="home-E1"></div><div id="home-F1"></div><div id="home-G1"></div><div id="home-H1"></div><div id="home-I1"></div><div id="home-J1"></div>
+        <div id="home-A2"></div><div id="home-B2"></div><div id="home-C2"></div><div id="home-D2"></div><div id="home-E2"></div><div id="home-F2"></div><div id="home-G2"></div><div id="home-H2"></div><div id="home-I2"></div><div id="home-J2"></div>
+        <div id="home-A3"></div><div id="home-B3"></div><div id="home-C3"></div><div id="home-D3"></div><div id="home-E3"></div><div id="home-F3"></div><div id="home-G3"></div><div id="home-H3"></div><div id="home-I3"></div><div id="home-J3"></div>
+        <div id="home-A4"></div><div id="home-B4"></div><div id="home-C4"></div><div id="home-D4"></div><div id="home-E4"></div><div id="home-F4"></div><div id="home-G4"></div><div id="home-H4"></div><div id="home-I4"></div><div id="home-J4"></div>
+        <div id="home-A5"></div><div id="home-B5"></div><div id="home-C5"></div><div id="home-D5"></div><div id="home-E5"></div><div id="home-F5"></div><div id="home-G5"></div><div id="home-H5"></div><div id="home-I5"></div><div id="home-J5"></div>
+        <div id="home-A6"></div><div id="home-B6"></div><div id="home-C6"></div><div id="home-D6"></div><div id="home-E6"></div><div id="home-F6"></div><div id="home-G6"></div><div id="home-H6"></div><div id="home-I6"></div><div id="home-J6"></div>
+        <div id="home-A7"></div><div id="home-B7"></div><div id="home-C7"></div><div id="home-D7"></div><div id="home-E7"></div><div id="home-F7"></div><div id="home-G7"></div><div id="home-H7"></div><div id="home-I7"></div><div id="home-J7"></div>
+        <div id="home-A8"></div><div id="home-B8"></div><div id="home-C8"></div><div id="home-D8"></div><div id="home-E8"></div><div id="home-F8"></div><div id="home-G8"></div><div id="home-H8"></div><div id="home-I8"></div><div id="home-J8"></div>
+        <div id="home-A9"></div><div id="home-B9"></div><div id="home-C9"></div><div id="home-D9"></div><div id="home-E9"></div><div id="home-F9"></div><div id="home-G9"></div><div id="home-H9"></div><div id="home-I9"></div><div id="home-J9"></div>
+        <div id="home-A10"></div><div id="home-B10"></div><div id="home-C10"></div><div id="home-D10"></div><div id="home-E10"></div><div id="home-F10"></div><div id="home-G10"></div><div id="home-H10"></div><div id="home-I10"></div><div id="home-J10"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
